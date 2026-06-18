@@ -27,6 +27,8 @@ except ImportError:
 N = 4
 BAUD_RATE = 115200
 SERIAL_PORT = "COM3"
+# One UART frame = 10 bit-times; pace host writes so the FPGA FSM keeps up.
+UART_FRAME_BITS = 10
 
 CMD_A = ord("A")
 CMD_B = ord("B")
@@ -61,21 +63,50 @@ def list_serial_ports() -> None:
 class AcceleratorHost:
     """Minimal pyserial driver for host_uart_cmd protocol."""
 
-    def __init__(self, ser: serial.Serial):
+    def __init__(self, ser: serial.Serial, *, paced: bool = True):
         self.ser = ser
+        self.paced = paced
+        self.frame_time = UART_FRAME_BITS / ser.baudrate
 
     def send_byte(self, val: int) -> None:
         self.ser.write(bytes([val & 0xFF]))
         self.ser.flush()
+        if self.paced:
+            # Match testbench bit-bang spacing; avoids FSM desync on long loads.
+            time.sleep(self.frame_time * 2)
 
-    def read_byte(self, timeout: float = 2.0) -> int:
-        old = self.ser.timeout
-        self.ser.timeout = timeout
-        data = self.ser.read(1)
-        self.ser.timeout = old
-        if len(data) != 1:
-            raise TimeoutError("timeout waiting for UART byte from FPGA")
-        return data[0]
+    def drain_rx(self, label: str = "") -> bytes:
+        """Return any bytes already in the OS RX buffer (for debug)."""
+        time.sleep(0.01)
+        pending = self.ser.read(self.ser.in_waiting or 0)
+        if pending and label:
+            print(
+                f"  [{label}] unexpected RX:",
+                " ".join(f"0x{b:02X}" for b in pending),
+            )
+        return pending
+
+    def read_byte(self, timeout: float = 2.0, tag: str = "") -> int:
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            old = self.ser.timeout
+            remaining = max(0.01, deadline - time.monotonic())
+            self.ser.timeout = remaining
+            data = self.ser.read(1)
+            self.ser.timeout = old
+            if len(data) == 1:
+                return data[0]
+        extra = self.drain_rx("timeout")
+        hint = (
+            " (FPGA may still be busy, or matrix load desynced the command parser — "
+            "press btnC reset on the board and retry)"
+        )
+        if extra:
+            raise TimeoutError(
+                f"timeout waiting for UART byte from FPGA{hint}; "
+                f"late RX: {' '.join(f'0x{b:02X}' for b in extra)}"
+            )
+        raise TimeoutError(f"timeout waiting for UART byte from FPGA{hint}")
 
     def load_a(self, addr: int, value: int) -> None:
         u16 = value & 0xFFFF
@@ -92,8 +123,11 @@ class AcceleratorHost:
         self.send_byte((u16 >> 8) & 0xFF)
 
     def start_and_wait_done(self) -> None:
+        # Let the last BRAM write finish before the start command.
+        time.sleep(0.05)
+        self.drain_rx("pre-start")
         self.send_byte(CMD_S)
-        rsp = self.read_byte(timeout=5.0)
+        rsp = self.read_byte(timeout=10.0, tag="wait_done")
         if rsp == RSP_D:
             print("compute done: received 'D'")
         elif rsp == RSP_E:
@@ -201,6 +235,11 @@ def main() -> None:
     parser.add_argument(
         "--list-ports", action="store_true", help="List serial ports and exit"
     )
+    parser.add_argument(
+        "--no-pace",
+        action="store_true",
+        help="Send bytes back-to-back (default adds inter-byte delay)",
+    )
     args = parser.parse_args()
 
     if args.list_ports:
@@ -211,7 +250,7 @@ def main() -> None:
     with serial.Serial(args.port, args.baud, timeout=2) as ser:
         time.sleep(0.1)
         ser.reset_input_buffer()
-        host = AcceleratorHost(ser)
+        host = AcceleratorHost(ser, paced=not args.no_pace)
 
         if args.ping:
             run_ping(host, CMD_S)
