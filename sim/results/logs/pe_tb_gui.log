@@ -1,0 +1,86 @@
+xrun(64): 25.03-s003: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.03-s003: Started on Jun 16, 2026 at 19:24:10 EDT
+xrun
+	-64bit
+	-sv
+	-f filelist.f
+		-timescale 1ns/1ps
+		../rtl/pe.sv
+		../tb/pe_tb.sv
+	-top pe_tb
+	-access +rwc
+	-linedebug
+	-input probes.tcl
+	-gui
+	-debug_opts verisium_interactive
+		-source_debug
+		-lwdgen
+		-classlinedebug
+		-enable_tpe
+		-gui
+		-verisium
+		-ext_src_info
+		-ext_macro_src_info
+		-disable_xform
+	-timescale 1ns/1ps
+	-l results/logs/pe_tb_gui.log
+xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+
+-------------------------------------
+Relinquished control to Verisium Debug...
+xcelium> 
+xcelium> source /tools/software/cadence/xcelium/latest/tools/xcelium/files/xmsimrc
+xcelium> # Waveform probes — loaded before sim via: xrun ... -input probes.tcl
+xcelium> # Records PE testbench and DUT signals into waves.shm for Verisium.
+xcelium> 
+xcelium> database -open waves -shm -default
+Created default SHM database waves
+xcelium> 
+xcelium> # Testbench controls
+xcelium> probe -create -shm pe_tb.clk
+Created probe 1
+xcelium> probe -create -shm pe_tb.rst
+Created probe 2
+xcelium> probe -create -shm pe_tb.clear
+Created probe 3
+xcelium> probe -create -shm pe_tb.a_in
+Created probe 4
+xcelium> probe -create -shm pe_tb.b_in
+Created probe 5
+xcelium> probe -create -shm pe_tb.a_out
+Created probe 6
+xcelium> probe -create -shm pe_tb.b_out
+Created probe 7
+xcelium> probe -create -shm pe_tb.acc_out
+Created probe 8
+xcelium> 
+xcelium> # DUT internals
+xcelium> probe -create -shm pe_tb.dut.acc_reg
+Created probe 9
+xcelium> 
+xcelium> # Push probed signals into the Verisium waveform pane
+xcelium> ida_probe -wave -wave_probe_args {pe_tb pe_tb.dut}
+database -open ida.db/ida.shm 
+Created SHM database ida.db/ida.shm
+
+database -setdefault ida.db/ida.shm
+ida.db/ida.shm is set as default SHM database
+
+probe pe_tb pe_tb.dut -emptyok
+Created probe 10
+
+xcelium> 
+xcelium> puts "probes.tcl: pe_tb and pe DUT probed into waves.shm"
+probes.tcl: pe_tb and pe DUT probed into waves.shm
+xcelium> 
+xcelium> 
+xcelium> run
+cycle 1: acc_out = 6 (expect 6)
+cycle 2: acc_out = 26 (expect 26)
+cycle 3: acc_out = 33 (expect 33)
+pe_tb: TODO — implement MAC test (expected acc_out = 33)
+pe_tb: ALL TESTS PASSED
+Simulation complete via $finish(1) at time 215 NS + 0
+../tb/pe_tb.sv:139         $finish;
+xcelium> TOOL:	xrun(64)	25.03-s003: Exiting on Jun 17, 2026 at 04:01:02 EDT  (total: 08:36:52)

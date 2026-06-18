@@ -1,0 +1,174 @@
+xrun(64): 25.03-s003: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.03-s003: Started on Jun 18, 2026 at 14:58:52 EDT
+xrun
+	-64bit
+	-sv
+	-f filelist_accelerator.f
+		-timescale 1ns/1ps
+		../rtl/pe.sv
+		../rtl/matrix_bram.sv
+		../rtl/matrix_memories.sv
+		../rtl/systolic_controller.sv
+		../rtl/systolic_array_4x4.sv
+		../rtl/uart_rx.sv
+		../rtl/uart_tx.sv
+		../rtl/host_uart_cmd.sv
+		../rtl/accelerator_top.sv
+		../tb/accelerator_top_tb.sv
+	-top accelerator_top_tb
+	-access +rwc
+	-linedebug
+	-input probes_accelerator.tcl
+	-gui
+	-debug_opts verisium_interactive
+		-source_debug
+		-lwdgen
+		-classlinedebug
+		-enable_tpe
+		-gui
+		-verisium
+		-ext_src_info
+		-ext_macro_src_info
+		-disable_xform
+	-timescale 1ns/1ps
+	+UART_DEBUG
+	-l results/logs/accelerator_top_tb_gui.log
+
+   User defined plus("+") options:
+	+UART_DEBUG
+
+xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+
+-------------------------------------
+Relinquished control to Verisium Debug...
+xcelium> 
+xcelium> source /tools/software/cadence/xcelium/latest/tools/xcelium/files/xmsimrc
+xcelium> # Waveform probes for accelerator_top_tb
+xcelium> # Focus: UART C-read reply (4-byte burst) and host_uart_cmd <-> uart_tx handshake
+xcelium> #
+xcelium> # What to look for (zoom to first 'C' read after compute finishes):
+xcelium> #   - u_host_cmd.state enters CMD_TX_BYTE
+xcelium> #   - tx_byte_idx steps 0 -> 1 -> 2 -> 3 once per completed UART frame
+xcelium> #   - tx_valid pulses once per byte; tx_busy rises shortly after each pulse
+xcelium> #   - tx_done (busy falling edge) should precede the next tx_valid (fixed RTL)
+xcelium> #   - uart_tx shows four back-to-back serial frames on the wire
+xcelium> 
+xcelium> database -open waves -shm -default
+Created default SHM database waves
+xcelium> 
+xcelium> set tb accelerator_top_tb
+accelerator_top_tb
+xcelium> set dut ${tb}.dut
+accelerator_top_tb.dut
+xcelium> set host ${dut}.u_host_cmd
+accelerator_top_tb.dut.u_host_cmd
+xcelium> set utx ${dut}.u_uart_tx
+accelerator_top_tb.dut.u_uart_tx
+xcelium> set urx ${dut}.u_uart_rx
+accelerator_top_tb.dut.u_uart_rx
+xcelium> 
+xcelium> # --- TB clock / UART pins (what the "PC" sees) ---
+xcelium> probe -create -shm ${tb}.clk
+Created probe 1
+xcelium> probe -create -shm ${tb}.uart_rx
+Created probe 2
+xcelium> probe -create -shm ${tb}.uart_tx
+Created probe 3
+xcelium> 
+xcelium> # --- Host command FSM (C read path) ---
+xcelium> probe -create -shm ${host}.state
+Created probe 4
+xcelium> probe -create -shm ${host}.host_c_addr
+Created probe 5
+xcelium> probe -create -shm ${host}.c_read_val
+Created probe 6
+xcelium> probe -create -shm ${host}.tx_byte_idx
+Created probe 7
+xcelium> 
+xcelium> # --- UART TX handshake (the bug/fix lives here) ---
+xcelium> probe -create -shm ${host}.tx_data
+Created probe 8
+xcelium> probe -create -shm ${host}.tx_valid
+Created probe 9
+xcelium> probe -create -shm ${host}.tx_busy
+Created probe 10
+xcelium> probe -create -shm ${host}.tx_busy_q
+Created probe 11
+xcelium> probe -create -shm ${host}.tx_done
+Created probe 12
+xcelium> 
+xcelium> # --- UART transmitter internals ---
+xcelium> probe -create -shm ${utx}.valid
+Created probe 13
+xcelium> probe -create -shm ${utx}.data
+Created probe 14
+xcelium> probe -create -shm ${utx}.busy
+Created probe 15
+xcelium> probe -create -shm ${utx}.tx
+Created probe 16
+xcelium> probe -create -shm ${utx}.state
+Created probe 17
+xcelium> 
+xcelium> # --- UART receiver (host -> FPGA commands) ---
+xcelium> probe -create -shm ${urx}.rx
+Created probe 18
+xcelium> probe -create -shm ${urx}.data
+Created probe 19
+xcelium> probe -create -shm ${urx}.valid
+Created probe 20
+xcelium> 
+xcelium> # --- C BRAM read port (data being serialized) ---
+xcelium> probe -create -shm ${dut}.host_c_addr
+Created probe 21
+xcelium> probe -create -shm ${dut}.c_dout
+Created probe 22
+xcelium> probe -create -shm ${dut}.c_addr
+Created probe 23
+xcelium> 
+xcelium> # --- Compute handshake (context: 'S' then 'D') ---
+xcelium> probe -create -shm ${dut}.ctrl_start
+Created probe 24
+xcelium> probe -create -shm ${dut}.ctrl_done
+Created probe 25
+xcelium> probe -create -shm ${dut}.ctrl_busy
+Created probe 26
+xcelium> 
+xcelium> ida_probe -wave -wave_probe_args [list ${tb} ${host} ${utx} ${urx}]
+database -open ida.db/ida.shm 
+Created SHM database ida.db/ida.shm
+
+database -setdefault ida.db/ida.shm
+ida.db/ida.shm is set as default SHM database
+
+probe accelerator_top_tb accelerator_top_tb.dut.u_host_cmd accelerator_top_tb.dut.u_uart_tx accelerator_top_tb.dut.u_uart_rx -emptyok
+Created probe 27
+
+xcelium> 
+xcelium> puts "probes_accelerator.tcl: UART / C-read signals probed into waves.shm"
+probes_accelerator.tcl: UART / C-read signals probed into waves.shm
+xcelium> puts ""
+
+xcelium> puts "Recommended wave groups (top to bottom):"
+Recommended wave groups (top to bottom):
+xcelium> puts "  1) clk, uart_tx, uart_rx"
+  1) clk, uart_tx, uart_rx
+xcelium> puts "  2) host.state, host.tx_byte_idx, host.c_read_val"
+  2) host.state, host.tx_byte_idx, host.c_read_val
+xcelium> puts "  3) host.tx_valid, host.tx_data, host.tx_busy, host.tx_done"
+  3) host.tx_valid, host.tx_data, host.tx_busy, host.tx_done
+xcelium> puts "  4) utx.valid, utx.data, utx.busy, utx.state"
+  4) utx.valid, utx.data, utx.busy, utx.state
+xcelium> puts ""
+
+xcelium> puts "Zoom tip: run sim; with +UART_DEBUG it stops after first C-read burst"
+Zoom tip: run sim; with +UART_DEBUG it stops after first C-read burst
+xcelium> 
+xcelium> 
+xcelium> run
+compute done: received 'D'
+UART_DEBUG: first C read c[0][0]=1 (expected 1)
+UART_DEBUG: simulation paused — zoom CMD_TX_BYTE / uart_tx handshake
+Simulation stopped via $stop(1) at time 690155 NS + 0
+xcelium> exit
+TOOL:	xrun(64)	25.03-s003: Exiting on Jun 18, 2026 at 15:17:59 EDT  (total: 00:19:07)

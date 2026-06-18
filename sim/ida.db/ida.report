@@ -1,0 +1,16 @@
+	DEBUG_ANALYZER'S PROFILING REPORT:
+	Number of samples: 0
+	Number of recorded lines: 0
+	----------------------------------
+	Probe commands:
+ 			ida_probe -wave -wave_probe_args "accelerator_top_tb accelerator_top_tb.dut.u_host_cmd accelerator_top_tb.dut.u_uart_tx accelerator_top_tb.dut.u_uart_rx" -uvm_record_depth "10" -uvm FALSE 
+
+	----------------------------------
+
+
+	TOP 100 SAMPLED SOURCE LINES
+	------------------------------
+
+
+	TOP 10 SAMPLED SOURCE FILES
+	-----------------------------

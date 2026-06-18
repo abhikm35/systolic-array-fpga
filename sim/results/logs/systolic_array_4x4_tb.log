@@ -1,0 +1,73 @@
+xrun(64): 25.03-s003: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.03-s003: Started on Jun 17, 2026 at 13:26:55 EDT
+xrun
+	-64bit
+	-sv
+	-f filelist_array.f
+		-timescale 1ns/1ps
+		../rtl/pe.sv
+		../rtl/systolic_array_4x4.sv
+		../tb/systolic_array_4x4_tb.sv
+	-top systolic_array_4x4_tb
+	-access +rwc
+	-timescale 1ns/1ps
+	-l /nethome/amojumdar6/systolic-array-fpga/sim/results/logs/systolic_array_4x4_tb.log
+xrun: *W,WKWTLK: Waiting for a Exclusive lock on file '/nethome/amojumdar6/systolic-array-fpga/sim/xcelium.d/run.lnx8664.25.03.d/.xmlib.lock'. pid:3309009.
+
+Additional info:
+TOOL:	xrun(64)	25.03-s003 (CL: 779937 ), ece-rschsrv.ece.gatech.edu, Linux 4.18.0-553.124.1.el8_10.x86_64 #1 SMP Mon May 11 07:30:18 EDT 2026 x86_64
+file: ../rtl/pe.sv
+	module worklib.pe:sv
+		errors: 0, warnings: 0
+file: ../rtl/systolic_array_4x4.sv
+	module worklib.systolic_array_4x4:sv
+		errors: 0, warnings: 0
+file: ../tb/systolic_array_4x4_tb.sv
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/systolic_array_4x4_tb.sv,121|13): Time unit "step" seen in literal - using local precision.
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/systolic_array_4x4_tb.sv,214|13): Time unit "step" seen in literal - using local precision.
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/systolic_array_4x4_tb.sv,220|13): Time unit "step" seen in literal - using local precision.
+	module worklib.systolic_array_4x4_tb:sv
+		errors: 0, warnings: 3
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	Top level design units:
+		systolic_array_4x4_tb
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.pe:sv <0x1ffe55b5>
+			streams:   5, words:  1752
+		worklib.systolic_array_4x4_tb:sv <0x522857e1>
+			streams:  16, words: 21289
+		worklib.systolic_array_4x4:sv <0x52ff500a>
+			streams:   8, words:  3047
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                18       3
+		Registers:             103      43
+		Scalar wires:            3       -
+		Vectored wires:        171       -
+		Always blocks:          17       2
+		Initial blocks:          2       2
+		Cont. assignments:      40       4
+		Pseudo assignments:     86       -
+		Process Clocks:         16       1
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.systolic_array_4x4_tb:sv
+Loading snapshot worklib.systolic_array_4x4_tb:sv .................... Done
+xcelium> source /tools/software/cadence/xcelium/latest/tools/xcelium/files/xmsimrc
+xcelium> run
+identity IxI: C matrix PASS
+small 4x4: C matrix PASS
+systolic_array_4x4_tb: ALL TESTS PASSED
+Simulation complete via $finish(1) at time 305001 PS + 0
+../tb/systolic_array_4x4_tb.sv:227         $finish;
+xcelium> exit
+TOOL:	xrun(64)	25.03-s003: Exiting on Jun 17, 2026 at 13:27:20 EDT  (total: 00:00:25)

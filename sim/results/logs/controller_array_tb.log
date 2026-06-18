@@ -1,0 +1,68 @@
+xrun(64): 25.03-s003: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.03-s003: Started on Jun 18, 2026 at 10:27:30 EDT
+xrun
+	-64bit
+	-sv
+	-f filelist_controller.f
+		-timescale 1ns/1ps
+		../rtl/pe.sv
+		../rtl/matrix_bram.sv
+		../rtl/matrix_memories.sv
+		../rtl/systolic_controller.sv
+		../rtl/systolic_array_4x4.sv
+		../tb/controller_array_tb.sv
+	-top controller_array_tb
+	-access +rwc
+	-timescale 1ns/1ps
+	-l /nethome/amojumdar6/systolic-array-fpga/sim/results/logs/controller_array_tb.log
+Recompiling... reason: file '../tb/controller_array_tb.sv' is newer than expected.
+	expected: Wed Jun 17 20:33:28 2026
+	actual:   Thu Jun 18 10:27:04 2026
+file: ../tb/controller_array_tb.sv
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/controller_array_tb.sv,152|13): Time unit "step" seen in literal - using local precision.
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/controller_array_tb.sv,162|13): Time unit "step" seen in literal - using local precision.
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/controller_array_tb.sv,179|13): Time unit "step" seen in literal - using local precision.
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/controller_array_tb.sv,184|13): Time unit "step" seen in literal - using local precision.
+	module worklib.controller_array_tb:sv
+		errors: 0, warnings: 4
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	Top level design units:
+		controller_array_tb
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.controller_array_tb:sv <0x2077c9e6>
+			streams:  54, words: 36034
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                23       6
+		Registers:             168     104
+		Scalar wires:           25       -
+		Vectored wires:        211       -
+		Always blocks:          23       6
+		Initial blocks:          2       2
+		Cont. assignments:      53      20
+		Pseudo assignments:    115       -
+		Process Clocks:         20       3
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.controller_array_tb:sv
+Loading snapshot worklib.controller_array_tb:sv .................... Done
+xcelium> source /tools/software/cadence/xcelium/latest/tools/xcelium/files/xmsimrc
+xcelium> run
+identity IxI: c_out PASS
+small 4x4: c_out PASS
+controller_array_tb: ALL TESTS PASSED
+Simulation complete via $finish(1) at time 2005001 PS + 0
+../tb/controller_array_tb.sv:230         $finish;
+xcelium> exit
+TOOL:	xrun(64)	25.03-s003: Exiting on Jun 18, 2026 at 10:27:31 EDT  (total: 00:00:01)

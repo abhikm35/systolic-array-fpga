@@ -1,0 +1,136 @@
+12:10:03:103 [important] [features-3-thread-1] WARN  - InfoSource version is empty in getMajorMinorVersion()
+12:10:03:103 [important] [features-3-thread-1] WARN  - InfoSource version not found!! skipping relevant version checks
+12:10:04:104 [important] [features-3-thread-1] INFO  - xmsim gcc version is 12.4.0
+12:10:04:104 [important] [features-3-thread-1] INFO  - indago gcc version is 12.4.0
+12:10:05:105 [important] [TangoTaskManager-3] WARN  - An Indago Snapshot/LWD was not loaded. Scripting API functionality may be impacted.
+12:10:05:105 [com.cadence.smartlog.bl.common.SLUtils] [TangoTaskManager-5] INFO  - query: 
+12:10:14:1014 [user_actions] [AWT-EventQueue-1] DEBUG - refreshSchematicAttributes (SchematicActionsManager$28)
+
+12:10:14:1014 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+12:10:14:1014 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+12:10:14:1014 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+12:10:14:1014 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+12:10:14:1014 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+12:10:15:1015 [important] [TangoTaskManager-3] INFO  - ScriptingActivator while loop has finished
+12:10:16:1016 [user_actions] [AWT-EventQueue-1] DEBUG - refreshSchematicAttributes (SchematicActionsManager$28)
+
+12:10:37:1037 [user_actions] [AWT-EventQueue-1] DEBUG - Don't Restore (GUFIQuestionDialog$1)
+	dialog = autoRestoreUserState (GUFIQuestionDialog)
+
+12:10:42:1042 [user_actions] [AWT-EventQueue-1] DEBUG - run (GSLInteractiveRunPanel$5)
+
+12:10:42:1042 [user_actions] [AWT-EventQueue-1] DEBUG - RUN_FORWARD (GSLDebugStepAction)
+
+12:10:42:1042 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+12:11:21:1121 [user_actions] [AWT-EventQueue-1] DEBUG - showIdentifierSource (GSLShowDeclarationSourceAction)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.a_h[0:3]
+
+12:11:27:1127 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.clk
+
+12:11:31:1131 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.clear
+
+12:11:39:1139 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.c_out[0:3]
+
+12:11:48:1148 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.a_h[0:3]
+
+12:12:14:1214 [user_actions] [AWT-EventQueue-1] DEBUG - showIdentifierSource (GSLShowDeclarationSourceAction)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.pe_acc[0:3]
+
+12:12:17:1217 [user_actions] [AWT-EventQueue-1] DEBUG - showIdentifierSource (GSLShowDeclarationSourceAction)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.pe_acc[0:3]
+
+12:12:19:1219 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.pe_acc[0:3]
+
+12:12:21:1221 [user_actions] [AWT-EventQueue-1] DEBUG - Delete_Backspace (RemoveSignalsAction)
+	selected = systolic_array_4x4_tb.dut.a_h[0:3]
+
+12:13:38:1338 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom In (ZoomAction)
+	selected[0] = 
+
+12:13:50:1350 [user_actions] [AWT-EventQueue-1] DEBUG - TraceCause (TraceCauseWaveAction)
+	cellY = 16.0
+	targetRow = 6(pe_acc[2])
+
+12:14:39:1439 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom Out (ZoomAction)
+	selected = systolic_array_4x4_tb.dut.c_out[0][0]
+
+12:14:39:1439 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom Out (ZoomAction)
+	selected = systolic_array_4x4_tb.dut.c_out[0][0]
+
+12:14:43:1443 [user_actions] [AWT-EventQueue-1] DEBUG - run (GSLInteractiveRunPanel$5)
+
+12:14:43:1443 [user_actions] [AWT-EventQueue-1] DEBUG - RUN_FORWARD (GSLDebugStepAction)
+
+12:14:43:1443 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+12:14:43:1443 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+12:14:53:1453 [user_actions] [AWT-EventQueue-1] DEBUG - showIdentifierSource (GSLShowDeclarationSourceAction)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.c_out[0:3]
+
+12:14:55:1455 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.c_out[0:3]
+
+12:51:44:5144 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom In (ZoomAction)
+	selected = systolic_array_4x4_tb.dut.c_out[0:3]
+
+12:54:11:5411 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom Full (ZoomAction)
+	selected[0] = 
+
+12:54:28:5428 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom Full (ZoomAction)
+	selected[0] = 
+
+12:54:47:5447 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.a_h[0][0]
+
+12:55:01:551 [user_actions] [AWT-EventQueue-1] DEBUG - showIdentifierSource (GSLShowDeclarationSourceAction)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = systolic_array_4x4_tb.dut.a_h[0][0]
+
+12:58:10:5810 [user_actions] [AWT-EventQueue-1] DEBUG - Delete_Backspace (RemoveSignalsAction)
+	selected = systolic_array_4x4_tb.dut.a_h[0][0]
+
+12:59:41:5941 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom In (ZoomAction)
+	selected = systolic_array_4x4_tb.dut.a_h[0][0]
+
+13:09:41:941 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom Out (ZoomAction)
+	selected = systolic_array_4x4_tb.dut.a_h[0:3]
+
+13:09:50:950 [user_actions] [AWT-EventQueue-1] DEBUG - dndaction (GUFITransferHandler$DnDAction)
+	source = WAVEFORMTreeTable (GTXWaveTreeTable)
+	target = WAVEFORMTreeTable (GTXWaveTreeTable)
+	entity = systolic_array_4x4_tb.dut.clear
+
+13:11:31:1131 [user_actions] [AWT-EventQueue-1] DEBUG - dndaction (GUFITransferHandler$DnDAction)
+	source = WAVEFORMTreeTable (GTXWaveTreeTable)
+	target = WAVEFORMTreeTable (GTXWaveTreeTable)
+	entity = systolic_array_4x4_tb.dut.clk
+
+13:17:33:1733 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom In (ZoomAction)
+	selected = systolic_array_4x4_tb.dut.clk
+
+13:27:16:2716 [user_actions] [AWT-EventQueue-1] DEBUG - OK (GUFIQuestionDialog$1)
+	dialog = confirmExitDlg (GUFIQuestionDialog)
+

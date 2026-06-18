@@ -1,0 +1,1 @@
+			ida_probe -wave -wave_probe_args "systolic_array_4x4_tb.dut.c_out" -uvm_record_depth "10" -uvm FALSE 

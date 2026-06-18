@@ -1,0 +1,4 @@
+Connected to dc:ece-linlabsrv01.ece.gatech.edu:58617
+xmsim run
+xmsim ida_probe -wave -wave_probe_args {systolic_array_4x4_tb.dut.c_out}
+xmsim run

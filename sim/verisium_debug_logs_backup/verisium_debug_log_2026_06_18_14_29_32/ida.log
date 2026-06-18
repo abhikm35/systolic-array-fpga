@@ -1,0 +1,39 @@
+10:28:45:2845 [important] [features-3-thread-1] WARN  - InfoSource version is empty in getMajorMinorVersion()
+10:28:45:2845 [important] [features-3-thread-1] WARN  - InfoSource version not found!! skipping relevant version checks
+10:28:46:2846 [important] [features-3-thread-1] INFO  - xmsim gcc version is 12.4.0
+10:28:46:2846 [important] [features-3-thread-1] INFO  - indago gcc version is 12.4.0
+10:28:46:2846 [important] [TangoTaskManager-3] WARN  - An Indago Snapshot/LWD was not loaded. Scripting API functionality may be impacted.
+10:28:47:2847 [com.cadence.smartlog.bl.common.SLUtils] [TangoTaskManager-5] INFO  - query: 
+10:28:54:2854 [user_actions] [AWT-EventQueue-1] DEBUG - refreshSchematicAttributes (SchematicActionsManager$28)
+
+10:28:54:2854 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+10:28:55:2855 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+10:28:55:2855 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+10:28:55:2855 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+10:28:55:2855 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+10:29:30:2930 [user_actions] [AWT-EventQueue-1] DEBUG - Restore defaults (GUFIQuestionDialog$1)
+	dialog = restoreLayoutsDialog (GUFIQuestionDialog)
+
+10:29:31:2931 [important] [TangoTaskManager-3] INFO  - ScriptingActivator while loop has finished
+10:29:32:2932 [user_actions] [AWT-EventQueue-1] DEBUG - refreshSchematicAttributes (SchematicActionsManager$28)
+
+10:29:47:2947 [user_actions] [AWT-EventQueue-1] DEBUG - run (GSLInteractiveRunPanel$5)
+
+10:29:47:2947 [user_actions] [AWT-EventQueue-1] DEBUG - RUN_FORWARD (GSLDebugStepAction)
+
+10:29:48:2948 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+10:30:11:3011 [user_actions] [AWT-EventQueue-1] DEBUG - run (GSLInteractiveRunPanel$5)
+
+10:30:11:3011 [user_actions] [AWT-EventQueue-1] DEBUG - RUN_FORWARD (GSLDebugStepAction)
+
+10:30:11:3011 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+10:30:20:3020 [user_actions] [AWT-EventQueue-1] DEBUG - OK (GUFIQuestionDialog$1)
+	dialog = confirmExitDlg (GUFIQuestionDialog)
+

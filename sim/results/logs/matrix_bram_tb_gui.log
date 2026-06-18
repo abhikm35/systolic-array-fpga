@@ -1,0 +1,295 @@
+xrun(64): 25.03-s003: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.03-s003: Started on Jun 17, 2026 at 16:20:50 EDT
+xrun
+	-64bit
+	-sv
+	-f filelist_bram.f
+		-timescale 1ns/1ps
+		../rtl/matrix_bram.sv
+		../rtl/matrix_memories.sv
+		../tb/matrix_bram_tb.sv
+	-top matrix_bram_tb
+	-access +rwc
+	-linedebug
+	-input probes_bram.tcl
+	-gui
+	-debug_opts verisium_interactive
+		-source_debug
+		-lwdgen
+		-classlinedebug
+		-enable_tpe
+		-gui
+		-verisium
+		-ext_src_info
+		-ext_macro_src_info
+		-disable_xform
+	-timescale 1ns/1ps
+	-l results/logs/matrix_bram_tb_gui.log
+xrun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+file: ../rtl/matrix_bram.sv
+	module worklib.matrix_bram:sv
+		errors: 0, warnings: 0
+file: ../rtl/matrix_memories.sv
+	module worklib.matrix_memories:sv
+		errors: 0, warnings: 0
+file: ../tb/matrix_bram_tb.sv
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/matrix_bram_tb.sv,105|13): Time unit "step" seen in literal - using local precision.
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/matrix_bram_tb.sv,115|13): Time unit "step" seen in literal - using local precision.
+        #1step;
+             |
+xmvlog: *W,SAWSTP (../tb/matrix_bram_tb.sv,125|13): Time unit "step" seen in literal - using local precision.
+	module worklib.matrix_bram_tb:sv
+		errors: 0, warnings: 3
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	Top level design units:
+		matrix_bram_tb
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.matrix_bram:sv <0x2d00532f>
+			streams:   3, words:  1547
+		worklib.matrix_bram:sv <0x69f0d1ac>
+			streams:   3, words:  1583
+		worklib.matrix_memories:sv <0x209ad707>
+			streams:   3, words:  1503
+		worklib.matrix_bram_tb:sv <0x2052bd42>
+			streams:  28, words: 61140
+xmelab: *W,DLLSVW: Unable to list the views of rfLib.cdsinit (System error).
+xmelab: *W,DLLSVW: Unable to list the views of rfLib.README (System error).
+xmelab: *W,DLLSVW: Unable to list the views of rfLib.GNUmakefile (System error).
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 5       3
+		Registers:              60      56
+		Scalar wires:            4       -
+		Vectored wires:         18       -
+		Always blocks:           4       2
+		Initial blocks:          2       2
+		Pseudo assignments:     16       -
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.matrix_bram_tb:sv
+	Parallel LWD Data Generation
+	Generating Debug Data:
+		LWD Database path: (/nethome/amojumdar6/systolic-array-fpga/sim/xcelium.d/worklib/matrix_bram_tb/sv/debug_db/matrix_bram_tb)
+		Power Aware Instances:                    0
+		Liberty Instances:                        0
+		Out Of Module References:                 0
+		Assertions:                               0
+		Liberty Information:
+			PG Pins:	                  0
+			Liberty Pins:	                  0
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+
+-------------------------------------
+Relinquished control to Verisium Debug...
+xcelium> 
+xcelium> source /tools/software/cadence/xcelium/latest/tools/xcelium/files/xmsimrc
+xcelium> # Waveform probes for matrix_bram_tb
+xcelium> 
+xcelium> database -open waves -shm -default
+Created default SHM database waves
+xcelium> 
+xcelium> probe -create -shm matrix_bram_tb.clk
+Created probe 1
+xcelium> probe -create -shm matrix_bram_tb.a_we
+Created probe 2
+xcelium> probe -create -shm matrix_bram_tb.a_addr
+Created probe 3
+xcelium> probe -create -shm matrix_bram_tb.a_din
+Created probe 4
+xcelium> probe -create -shm matrix_bram_tb.a_dout
+Created probe 5
+xcelium> probe -create -shm matrix_bram_tb.b_we
+Created probe 6
+xcelium> probe -create -shm matrix_bram_tb.b_addr
+Created probe 7
+xcelium> probe -create -shm matrix_bram_tb.b_din
+Created probe 8
+xcelium> probe -create -shm matrix_bram_tb.b_dout
+Created probe 9
+xcelium> probe -create -shm matrix_bram_tb.c_we
+Created probe 10
+xcelium> probe -create -shm matrix_bram_tb.c_addr
+Created probe 11
+xcelium> probe -create -shm matrix_bram_tb.c_din
+Created probe 12
+xcelium> probe -create -shm matrix_bram_tb.c_dout
+Created probe 13
+xcelium> probe -create -shm matrix_bram_tb.dut.u_bram_a.mem
+Created probe 14
+xcelium> probe -create -shm matrix_bram_tb.dut.u_bram_b.mem
+Created probe 15
+xcelium> probe -create -shm matrix_bram_tb.dut.u_bram_c.mem
+Created probe 16
+xcelium> 
+xcelium> ida_probe -wave -wave_probe_args {matrix_bram_tb matrix_bram_tb.dut}
+database -open ida.db/ida.shm 
+Created SHM database ida.db/ida.shm
+
+database -setdefault ida.db/ida.shm
+ida.db/ida.shm is set as default SHM database
+
+probe matrix_bram_tb matrix_bram_tb.dut -emptyok
+Created probe 17
+
+xcelium> 
+xcelium> puts "probes_bram.tcl: A/B/C BRAM ports and internal mem probed into waves.shm"
+probes_bram.tcl: A/B/C BRAM ports and internal mem probed into waves.shm
+xcelium> 
+xcelium> 
+xcelium> run
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 515001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[0][0]: got x, expected 1
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 525001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[0][1]: got x, expected 2
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 535001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[0][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 545001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[0][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 555001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[1][0]: got x, expected 3
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 565001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[1][1]: got x, expected 4
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 575001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[1][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 585001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[1][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 595001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[2][0]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 605001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[2][1]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 615001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[2][2]: got x, expected 1
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 625001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[2][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 635001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[3][0]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 645001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[3][1]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 655001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[3][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,146): (time 665001 PS).
+matrix_bram_tb.verify_bank_a
+Bank A[3][3]: got x, expected 1
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 675001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[0][0]: got x, expected 5
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 685001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[0][1]: got x, expected 6
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 695001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[0][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 705001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[0][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 715001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[1][0]: got x, expected 7
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 725001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[1][1]: got x, expected 8
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 735001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[1][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 745001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[1][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 755001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[2][0]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 765001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[2][1]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 775001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[2][2]: got x, expected 1
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 785001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[2][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 795001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[3][0]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 805001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[3][1]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 815001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[3][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,159): (time 825001 PS).
+matrix_bram_tb.verify_bank_b
+Bank B[3][3]: got x, expected 1
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 835001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[0][0]: got x, expected 19
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 845001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[0][1]: got x, expected 22
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 855001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[0][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 865001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[0][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 875001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[1][0]: got x, expected 43
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 885001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[1][1]: got x, expected 50
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 895001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[1][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 905001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[1][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 915001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[2][0]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 925001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[2][1]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 935001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[2][2]: got x, expected 1
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 945001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[2][3]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 955001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[3][0]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 965001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[3][1]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 975001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[3][2]: got x, expected 0
+xmsim: *E,ERRSEV (../tb/matrix_bram_tb.sv,172): (time 985001 PS).
+matrix_bram_tb.verify_bank_c
+Bank C[3][3]: got x, expected 1
+matrix_bram_tb: FAILED with 48 error(s)
+Simulation complete via $finish(1) at time 985001 PS + 0
+../tb/matrix_bram_tb.sv:206         $finish;
+xcelium> exit
+TOOL:	xrun(64)	25.03-s003: Exiting on Jun 17, 2026 at 16:33:23 EDT  (total: 00:12:33)

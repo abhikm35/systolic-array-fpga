@@ -1,0 +1,97 @@
+19:24:40:2440 [important] [features-3-thread-1] WARN  - InfoSource version is empty in getMajorMinorVersion()
+19:24:40:2440 [important] [features-3-thread-1] WARN  - InfoSource version not found!! skipping relevant version checks
+19:24:40:2440 [important] [features-3-thread-1] INFO  - xmsim gcc version is 12.4.0
+19:24:40:2440 [important] [features-3-thread-1] INFO  - indago gcc version is 12.4.0
+19:24:41:2441 [important] [TangoTaskManager-3] WARN  - An Indago Snapshot/LWD was not loaded. Scripting API functionality may be impacted.
+19:24:42:2442 [com.cadence.smartlog.bl.common.SLUtils] [TangoTaskManager-5] INFO  - query: 
+19:24:49:2449 [user_actions] [AWT-EventQueue-1] DEBUG - refreshSchematicAttributes (SchematicActionsManager$28)
+
+19:24:49:2449 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+19:24:49:2449 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+19:24:49:2449 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+19:24:49:2449 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+19:24:49:2449 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+19:24:50:2450 [important] [TangoTaskManager-3] INFO  - ScriptingActivator while loop has finished
+19:24:51:2451 [user_actions] [AWT-EventQueue-1] DEBUG - refreshSchematicAttributes (SchematicActionsManager$28)
+
+19:25:03:253 [user_actions] [AWT-EventQueue-1] DEBUG - run (GSLInteractiveRunPanel$5)
+
+19:25:03:253 [user_actions] [AWT-EventQueue-1] DEBUG - RUN_FORWARD (GSLDebugStepAction)
+
+19:25:03:253 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
+19:25:14:2514 [user_actions] [AWT-EventQueue-1] DEBUG - showIdentifierSource (GSLShowDeclarationSourceAction)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.clk
+
+19:25:19:2519 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.clk
+
+19:25:28:2528 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.a_in[15:0]
+
+19:25:33:2533 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.b_in[15:0]
+
+19:25:48:2548 [user_actions] [AWT-EventQueue-1] DEBUG - showIdentifierSource (GSLShowDeclarationSourceAction)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.acc_out[31:0]
+
+19:25:52:2552 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.acc_out[31:0]
+
+19:26:11:2611 [user_actions] [AWT-EventQueue-1] DEBUG - showIdentifierSource (GSLShowDeclarationSourceAction)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.clear
+
+19:26:14:2614 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.clear
+
+19:26:31:2631 [user_actions] [AWT-EventQueue-1] DEBUG - showInstTypeDeclaration (GSLShowInstTypeDeclaration)
+	source = designTopsTreeTable
+	entity = pe_tb.dut
+
+19:26:40:2640 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.dut.acc_reg[31:0]
+
+19:26:49:2649 [user_actions] [AWT-EventQueue-1] DEBUG - Delete_Backspace (RemoveSignalsAction)
+	selected = pe_tb.acc_out[31:0]
+
+19:26:55:2655 [user_actions] [AWT-EventQueue-1] DEBUG - sendToWaveformActionSet (GSLSendToWaveActionSet)
+	source = designTopsTreeTable_topsSignalsTreeTable
+	entity = pe_tb.dut.acc_out[31:0]
+
+19:27:23:2723 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom In (ZoomAction)
+	selected = pe_tb.dut.acc_out[31:0]
+
+19:27:23:2723 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom In (ZoomAction)
+	selected = pe_tb.dut.acc_out[31:0]
+
+19:27:25:2725 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom Out (ZoomAction)
+	selected = pe_tb.dut.acc_out[31:0]
+
+19:27:32:2732 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom In (ZoomAction)
+	selected = pe_tb.dut.acc_out[31:0]
+
+19:27:33:2733 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom In (ZoomAction)
+	selected = pe_tb.dut.acc_out[31:0]
+
+19:27:35:2735 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom Out (ZoomAction)
+	selected = pe_tb.dut.acc_out[31:0]
+
+19:28:00:280 [user_actions] [AWT-EventQueue-1] DEBUG - Zoom Out (ZoomAction)
+	selected = pe_tb.dut.acc_out[31:0]
+
+04:01:02:12 [user_actions] [AWT-EventQueue-1] DEBUG - LiveSimulationRefreshWaveform (GSLLiveSimulationRefreshWaveformAction)
+
