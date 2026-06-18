@@ -122,7 +122,7 @@ module host_uart_cmd #(
             tx_valid    <= 1'b0;
             start_pulse <= 1'b0;
 
-            if (done_pulse)
+            if (done_pulse && state != CMD_WAIT_DONE)
                 done_tx_pending <= 1'b1;
 
             unique case (state)
@@ -245,8 +245,16 @@ module host_uart_cmd #(
                 end
 
                 CMD_WAIT_DONE: begin
-                    if (done_pulse)
+                    if (done_pulse) begin
                         state <= CMD_IDLE;
+                        if (!tx_busy) begin
+                            tx_data         <= RSP_D;
+                            tx_valid        <= 1'b1;
+                            done_tx_pending <= 1'b0;
+                        end else begin
+                            done_tx_pending <= 1'b1;
+                        end
+                    end
                 end
 
                 default: state <= CMD_IDLE;
