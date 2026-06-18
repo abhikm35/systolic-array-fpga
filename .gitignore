@@ -1,0 +1,25 @@
+# Simulation / tool artifacts (do not commit — breaks Windows clone due to ':' in paths)
+sim/xcelium.d/
+sim/ida.db/
+sim/verisium_debug_logs/
+sim/verisium_debug_logs_backup/
+sim/results/
+sim/xrun.key
+
+# Vivado (when added locally on Windows)
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.jou
+*.log
+*.str
+*.bit
+*.bin
+*.mcs
+
+# Editor / OS
+.DS_Store
+*.swp
+*~
