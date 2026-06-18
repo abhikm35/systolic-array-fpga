@@ -6,7 +6,9 @@ Protocol matches rtl/host_uart_cmd.sv and tb/accelerator_top_tb.sv.
 
 Usage:
   pip install pyserial
-  python uart_test.py                      # identity IxI test (default)
+  python uart_test.py                      # run identity + small 4x4 (default)
+  python uart_test.py --test identity      # identity IxI only
+  python uart_test.py --test small         # small 4x4 only
   python uart_test.py --ping               # send one 'S' byte only
   python uart_test.py --port COM4
   python uart_test.py --list-ports
@@ -48,6 +50,43 @@ def identity_matrix():
     for i in range(N):
         m[i][i] = 1
     return m
+
+
+def small_test_matrices():
+    """Same A/B as load_small_test() in accelerator_top_tb.sv."""
+    a = [
+        [1, 2, 0, 0],
+        [3, 4, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1],
+    ]
+    b = [
+        [5, 6, 0, 0],
+        [7, 8, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1],
+    ]
+    return a, b
+
+
+def matmul_expected(a, b):
+    """C = A @ B — matches compute_expected() in accelerator_top_tb.sv."""
+    c = [[0] * N for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            acc = 0
+            for k in range(N):
+                acc += a[i][k] * b[k][j]
+            c[i][j] = acc
+    return c
+
+
+def print_matrix(name: str, mat) -> None:
+    """Pretty-print a 4x4 matrix (console only — no UART time)."""
+    print(name)
+    for row in mat:
+        print("  [" + ", ".join(f"{v:4d}" for v in row) + "]")
+    print()
 
 
 def list_serial_ports() -> None:
@@ -166,20 +205,30 @@ class AcceleratorHost:
         return c
 
 
-def run_identity_test(host: AcceleratorHost) -> bool:
-    """Full IxI test — mirrors accelerator_top_tb run_one_test('identity IxI')."""
-    a = identity_matrix()
-    b = identity_matrix()
-    c_exp = identity_matrix()
+def run_matrix_test(
+    host: AcceleratorHost, test_name: str, a, b, *, show_matrices: bool = True
+) -> bool:
+    """Load A/B over UART, compute, read C, compare to golden model."""
+    c_exp = matmul_expected(a, b)
+    t0 = time.perf_counter()
 
-    print("Loading A (identity)...")
+    print(f"\n=== {test_name} ===")
+    if show_matrices:
+        print_matrix("A (loaded into FPGA):", a)
+        print_matrix("B (loaded into FPGA):", b)
+
+    print("Loading A over UART...")
     host.load_matrix_a(a)
-    print("Loading B (identity)...")
+    print("Loading B over UART...")
     host.load_matrix_b(b)
     print("Starting compute...")
     host.start_and_wait_done()
     print("Reading C matrix...")
     c_got = host.read_matrix_c()
+
+    if show_matrices:
+        print_matrix("C (read back from FPGA):", c_got)
+        print_matrix("C (expected):", c_exp)
 
     errors = 0
     for i in range(N):
@@ -190,12 +239,24 @@ def run_identity_test(host: AcceleratorHost) -> bool:
                 )
                 errors += 1
 
+    elapsed = time.perf_counter() - t0
     if errors == 0:
-        print("identity IxI: C matrix PASS")
+        print(f"{test_name}: C matrix PASS  ({elapsed:.1f}s UART)")
         return True
 
-    print(f"identity IxI: FAILED with {errors} error(s)")
+    print(f"{test_name}: FAILED with {errors} error(s)  ({elapsed:.1f}s UART)")
     return False
+
+
+def run_identity_test(host: AcceleratorHost, *, show_matrices: bool = True) -> bool:
+    a = identity_matrix()
+    b = identity_matrix()
+    return run_matrix_test(host, "identity IxI", a, b, show_matrices=show_matrices)
+
+
+def run_small_test(host: AcceleratorHost, *, show_matrices: bool = True) -> bool:
+    a, b = small_test_matrices()
+    return run_matrix_test(host, "small 4x4", a, b, show_matrices=show_matrices)
 
 
 def run_ping(host: AcceleratorHost, byte_val: int) -> None:
@@ -233,12 +294,23 @@ def main() -> None:
         help="Send a single 'S' byte only (quick link test)",
     )
     parser.add_argument(
+        "--test",
+        choices=("all", "identity", "small"),
+        default="all",
+        help="Which test to run (default: all — identity then small 4x4)",
+    )
+    parser.add_argument(
         "--list-ports", action="store_true", help="List serial ports and exit"
     )
     parser.add_argument(
         "--no-pace",
         action="store_true",
         help="Send bytes back-to-back (default adds inter-byte delay)",
+    )
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Hide A/B/C matrix printout (PASS/FAIL only)",
     )
     args = parser.parse_args()
 
@@ -257,7 +329,17 @@ def main() -> None:
             print("Done.")
             return
 
-        ok = run_identity_test(host)
+        ok = True
+        show = not args.quiet
+        if args.test in ("all", "identity"):
+            ok = run_identity_test(host, show_matrices=show) and ok
+        if args.test in ("all", "small"):
+            ok = run_small_test(host, show_matrices=show) and ok
+
+        if ok:
+            print("\nALL TESTS PASSED")
+        else:
+            print("\nSOME TESTS FAILED")
         print("Done.")
         sys.exit(0 if ok else 1)
 
