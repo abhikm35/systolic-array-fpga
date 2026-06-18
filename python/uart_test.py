@@ -8,11 +8,9 @@ is received.
 
 Usage:
   pip install pyserial
-  python uart_test.py --port COM3          # Windows (check Device Manager)
-  python uart_test.py --port /dev/ttyUSB0  # Linux
-
-  python uart_test.py --port COM3 --byte A   # send 'A' instead
-  python uart_test.py --port COM3 --byte 0x53
+  python uart_test.py                    # default COM3, sends 'S'
+  python uart_test.py --port COM4        # override port
+  python uart_test.py --byte A
 """
 
 import argparse
@@ -27,6 +25,7 @@ except ImportError:
     sys.exit(1)
 
 BAUD_RATE = 115200
+SERIAL_PORT = "COM3"
 DEFAULT_BYTE = 0x53  # 'S' — start compute
 
 
@@ -60,7 +59,8 @@ def main() -> None:
     )
     parser.add_argument(
         "--port",
-        help="Serial port (e.g. COM3 on Windows, /dev/ttyUSB0 on Linux)",
+        default=SERIAL_PORT,
+        help=f"Serial port (default {SERIAL_PORT})",
     )
     parser.add_argument(
         "--baud",
@@ -83,11 +83,6 @@ def main() -> None:
     if args.list_ports:
         list_serial_ports()
         return
-
-    if not args.port:
-        print("Error: --port is required (or use --list-ports).")
-        list_serial_ports()
-        sys.exit(1)
 
     try:
         byte_val = parse_byte(args.byte)
